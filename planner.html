@@ -1,152 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-    
-<title>CWAS Pilot Portal - Planner</title>
-
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CWAS Pilot Planner</title>
 <style>
-body{
-    font-family:Arial,Helvetica,sans-serif;
-    margin:0;
-    background:#f4f6f7;
-    color:#333;
-}
-
-header{
-    background:#0b6b3a;
-    color:white;
-    text-align:center;
-    padding:20px;
-}
-
-header a{
-    color:white;
-    text-decoration:none;
-    font-weight:bold;
-}
-
-main{
-    max-width:1100px;
-    margin:auto;
-    padding:20px;
-}
-
-table{
-    width:100%;
-    border-collapse:collapse;
-    background:white;
-    box-shadow:0 2px 6px rgba(0,0,0,.15);
-}
-
-th{
-    background:#0b6b3a;
-    color:white;
-    padding:12px;
-}
-
-td{
-    padding:10px;
-    border-bottom:1px solid #ddd;
-}
-
-tr:nth-child(even){
-    background:#f8f8f8;
-}
-
-@media(max-width:700px){
-
-table,thead,tbody,tr,td,th{
-display:block;
-}
-
-thead{
-display:none;
-}
-
-tr{
-margin-bottom:18px;
-background:white;
-border-radius:10px;
-padding:10px;
-box-shadow:0 2px 6px rgba(0,0,0,.15);
-}
-
-td{
-border:none;
-padding:6px;
-}
-
-td:before{
-font-weight:bold;
-display:inline-block;
-width:90px;
-}
-
-td:nth-child(1):before{content:"Date";}
-td:nth-child(2):before{content:"Week";}
-td:nth-child(3):before{content:"10:30";}
-td:nth-child(4):before{content:"11:00";}
-td:nth-child(5):before{content:"11:30";}
-
-}
+body{font-family:Arial,sans-serif;margin:0;background:#f4f6f7}
+header{background:#0b6b3a;color:#fff;text-align:center;padding:20px}
+main{max-width:1000px;margin:auto;padding:20px}
+#search{width:100%;padding:12px;font-size:16px;margin-bottom:20px}
+.day{background:#fff;border-radius:10px;padding:15px;margin-bottom:18px;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+table{width:100%;border-collapse:collapse}
+th,td{padding:10px;border-bottom:1px solid #ddd;text-align:left}
+th{background:#e9f3ec}
+.home{font-weight:bold;color:#0b6b3a}
+a{color:#0b6b3a}
 </style>
-
-</head>
-
-<body>
-
-<header>
-
-<h1>📅 Ride Planner</h1>
-
-<p>Cycling Without Age Scotland</p>
-
-<p>Pittencrieff • Dunfermline</p>
-
-<p><a href="index.html">⬅ Return to Home</a></p>
-
-</header>
-
-<main>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>Date</th>
-<th>Week</th>
-<th>10:30</th>
-<th>11:00</th>
-<th>11:30</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr><td>Mon 20 Apr</td><td>1</td><td>Lindsay House</td><td>Canmore</td><td>Pitreavie</td></tr>
-<tr><td>Tue 21 Apr</td><td>1</td><td>Gowrie</td><td>Chapel Level</td><td>Raith</td></tr>
-<tr><td>Wed 22 Apr</td><td>1</td><td>Orchardhead</td><td>Bandrum</td><td>Abbeyfield</td></tr>
-<tr><td>Thu 23 Apr</td><td>1</td><td>Glendale</td><td>Matthew Fyfe</td><td>Leys Park</td></tr>
-
-<tr><td>Mon 27 Apr</td><td>2</td><td>Dalgety Bay</td><td>Pitreavie</td><td>Benarty</td></tr>
-<tr><td>Tue 28 Apr</td><td>2</td><td>Canmore</td><td>Hillend</td><td>Beeches</td></tr>
-<tr><td>Wed 29 Apr</td><td>2</td><td>Jean Mackie</td><td>Balmule</td><td>Henderson House</td></tr>
-<tr><td>Thu 30 Apr</td><td>2</td><td>Beeches</td><td>Matthew Fyfe</td><td>Dementia Café</td></tr>
-
-<!-- Continue adding the remaining rows from the CSV in the same format -->
-
-</tbody>
-
-</table>
-
-</main>
-
-</body>
-</html>
+<script>
+function filterDays(){
+ let f=document.getElementById('search').value.toLowerCase();
+ document.querySelectorAll('.day').forEach(d=>{
+   d.style.display=d.innerText.toLowerCase().includes(f)?'block':'none';
+ });
+}
+</script></head><body>
+<header><h1>CWAS Pilot Planner</h1><p><a style='color:white' href='index.html'>Home</a></p></header>
+<main><input id='search' onkeyup='filterDays()' placeholder='Search by date or care home...'>
+<div class='day'><h2>Mon 20 Apr &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Lindsay House</td></tr><tr><td>11:00</td><td class='home'>Canmore</td></tr><tr><td>11:30</td><td class='home'>Pitreavie</td></tr></table></div><div class='day'><h2>Tue 21 Apr &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Gowrie</td></tr><tr><td>11:00</td><td class='home'>Chapel Level</td></tr><tr><td>11:30</td><td class='home'>Raith</td></tr></table></div><div class='day'><h2>Wed 22 Apr &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Orchardhead</td></tr><tr><td>11:00</td><td class='home'>Bandrum</td></tr><tr><td>11:30</td><td class='home'>Abbeyfield</td></tr></table></div><div class='day'><h2>Thu 23 Apr &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Glendale</td></tr><tr><td>11:00</td><td class='home'>Matthew Fyfe</td></tr><tr><td>11:30</td><td class='home'>Leys Park</td></tr></table></div><div class='day'><h2>Mon 27 Apr &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Dalgety Bay</td></tr><tr><td>11:00</td><td class='home'>Pitreavie</td></tr><tr><td>11:30</td><td class='home'>Benarty</td></tr></table></div><div class='day'><h2>Tue 28 Apr &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Beeches</td></tr><tr><td>11:00</td><td class='home'>Links View</td></tr><tr><td>11:30</td><td class='home'>Raith</td></tr></table></div><div class='day'><h2>Wed 29 Apr &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'> </td></tr><tr><td>11:00</td><td class='home'>Bandrum</td></tr><tr><td>11:30</td><td class='home'></td></tr></table></div><div class='day'><h2>Thu 30 Apr &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Beeches</td></tr><tr><td>11:00</td><td class='home'>Matthew Fyfe</td></tr><tr><td>11:30</td><td class='home'>Henderson House</td></tr></table></div><div class='day'><h2>Mon 04 May &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Lindsay House</td></tr><tr><td>11:00</td><td class='home'>Canmore</td></tr><tr><td>11:30</td><td class='home'>Pitreavie</td></tr></table></div><div class='day'><h2>Tue 05 May &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Gowrie</td></tr><tr><td>11:00</td><td class='home'>Chapel Level</td></tr><tr><td>11:30</td><td class='home'>Raith</td></tr></table></div><div class='day'><h2>Wed 06 May &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Orchardhead</td></tr><tr><td>11:00</td><td class='home'>Bandrum</td></tr><tr><td>11:30</td><td class='home'>Abbeyfield</td></tr></table></div><div class='day'><h2>Thu 07 May &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Glendale</td></tr><tr><td>11:00</td><td class='home'>Matthew Fyfe</td></tr><tr><td>11:30</td><td class='home'>Leys Park</td></tr></table></div><div class='day'><h2>Mon 11 May &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Dalgety Bay</td></tr><tr><td>11:00</td><td class='home'>Pitreavie</td></tr><tr><td>11:30</td><td class='home'>Benarty</td></tr></table></div><div class='day'><h2>Tue 12 May &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Beeches</td></tr><tr><td>11:00</td><td class='home'>Links View</td></tr><tr><td>11:30</td><td class='home'>Raith</td></tr></table></div><div class='day'><h2>Wed 13 May &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Harbour Dysart</td></tr><tr><td>11:00</td><td class='home'>Bandrum</td></tr><tr><td>11:30</td><td class='home'></td></tr></table></div><div class='day'><h2>Thu 14 May &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Beeches</td></tr><tr><td>11:00</td><td class='home'>Matthew Fyfe</td></tr><tr><td>11:30</td><td class='home'>Henderson House</td></tr></table></div><div class='day'><h2>Mon 18 May &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Lindsay House</td></tr><tr><td>11:00</td><td class='home'>Canmore</td></tr><tr><td>11:30</td><td class='home'>Jean Mackie</td></tr></table></div><div class='day'><h2>Tue 19 May &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Gowrie</td></tr><tr><td>11:00</td><td class='home'>Chapel Level</td></tr><tr><td>11:30</td><td class='home'>Raith</td></tr></table></div><div class='day'><h2>Wed 20 May &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Orchardhead</td></tr><tr><td>11:00</td><td class='home'>Bandrum</td></tr><tr><td>11:30</td><td class='home'>Abbeyfield</td></tr></table></div><div class='day'><h2>Thu 21 May &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Glendale</td></tr><tr><td>11:00</td><td class='home'>Matthew Fyfe</td></tr><tr><td>11:30</td><td class='home'>Leys Park</td></tr></table></div><div class='day'><h2>Mon 25 May &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Dalgety Bay</td></tr><tr><td>11:00</td><td class='home'>Pitreavie</td></tr><tr><td>11:30</td><td class='home'>Benarty</td></tr></table></div><div class='day'><h2>Tue 26 May &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Beeches</td></tr><tr><td>11:00</td><td class='home'>Links View</td></tr><tr><td>11:30</td><td class='home'>Raith</td></tr></table></div><div class='day'><h2>Wed 27 May &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Harbour Dysart</td></tr><tr><td>11:00</td><td class='home'>Bandrum</td></tr><tr><td>11:30</td><td class='home'></td></tr></table></div><div class='day'><h2>Thu 28 May &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Beeches</td></tr><tr><td>11:00</td><td class='home'>Matthew Fyfe</td></tr><tr><td>11:30</td><td class='home'>Henderson House</td></tr></table></div><div class='day'><h2>Mon 01 Jun &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Lindsay House</td></tr><tr><td>11:00</td><td class='home'>Canmore</td></tr><tr><td>11:30</td><td class='home'>Jean Mackie</td></tr></table></div><div class='day'><h2>Tue 02 Jun &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Gowrie</td></tr><tr><td>11:00</td><td class='home'>Chapel Level</td></tr><tr><td>11:30</td><td class='home'>Raith</td></tr></table></div><div class='day'><h2>Wed 03 Jun &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Orchardhead</td></tr><tr><td>11:00</td><td class='home'></td></tr><tr><td>11:30</td><td class='home'>Abbeyfield</td></tr></table></div><div class='day'><h2>Thu 04 Jun &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Glendale</td></tr><tr><td>11:00</td><td class='home'>Matthew Fyfe</td></tr><tr><td>11:30</td><td class='home'>Leys Park</td></tr></table></div><div class='day'><h2>Mon 08 Jun &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Dalgety Bay</td></tr><tr><td>11:00</td><td class='home'>Pitreavie</td></tr><tr><td>11:30</td><td class='home'>Benarty</td></tr></table></div><div class='day'><h2>Tue 09 Jun &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Beeches</td></tr><tr><td>11:00</td><td class='home'>Links View</td></tr><tr><td>11:30</td><td class='home'>Raith</td></tr></table></div><div class='day'><h2>Wed 10 Jun &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'> </td></tr><tr><td>11:00</td><td class='home'></td></tr><tr><td>11:30</td><td class='home'></td></tr></table></div><div class='day'><h2>Thu 11 Jun &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Beeches</td></tr><tr><td>11:00</td><td class='home'>Matthew Fyfe</td></tr><tr><td>11:30</td><td class='home'>Henderson House</td></tr></table></div><div class='day'><h2>Mon 15 Jun &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Lindsay House</td></tr><tr><td>11:00</td><td class='home'>Canmore</td></tr><tr><td>11:30</td><td class='home'>Jean Mackie</td></tr></table></div><div class='day'><h2>Tue 16 Jun &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Gowrie</td></tr><tr><td>11:00</td><td class='home'>Chapel Level</td></tr><tr><td>11:30</td><td class='home'>Raith</td></tr></table></div><div class='day'><h2>Wed 17 Jun &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Orchardhead</td></tr><tr><td>11:00</td><td class='home'>Bandrum</td></tr><tr><td>11:30</td><td class='home'>Abbeyfield</td></tr></table></div><div class='day'><h2>Thu 18 Jun &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Glendale</td></tr><tr><td>11:00</td><td class='home'>Matthew Fyfe</td></tr><tr><td>11:30</td><td class='home'>Leys Park</td></tr></table></div><div class='day'><h2>Mon 22 Jun &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Dalgety Bay</td></tr><tr><td>11:00</td><td class='home'>Pitreavie</td></tr><tr><td>11:30</td><td class='home'>Benarty</td></tr></table></div><div class='day'><h2>Tue 23 Jun &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Beeches</td></tr><tr><td>11:00</td><td class='home'>Links View</td></tr><tr><td>11:30</td><td class='home'>Raith</td></tr></table></div><div class='day'><h2>Wed 24 Jun &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Alexander</td></tr><tr><td>11:00</td><td class='home'>Bandrum</td></tr><tr><td>11:30</td><td class='home'></td></tr></table></div><div class='day'><h2>Thu 25 Jun &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Beeches</td></tr><tr><td>11:00</td><td class='home'>Matthew Fyfe</td></tr><tr><td>11:30</td><td class='home'>Henderson House</td></tr></table></div><div class='day'><h2>Mon 29 Jun &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Lindsay House</td></tr><tr><td>11:00</td><td class='home'>Canmore</td></tr><tr><td>11:30</td><td class='home'>Jean Mackie</td></tr></table></div><div class='day'><h2>Tue 30 Jun &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Gowrie</td></tr><tr><td>11:00</td><td class='home'>Chapel Level</td></tr><tr><td>11:30</td><td class='home'>Raith</td></tr></table></div><div class='day'><h2>Wed 01 Jul &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Orchardhead</td></tr><tr><td>11:00</td><td class='home'>Bandrum</td></tr><tr><td>11:30</td><td class='home'>Abbeyfield</td></tr></table></div><div class='day'><h2>Thu 02 Jul &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Glendale</td></tr><tr><td>11:00</td><td class='home'>Matthew Fyfe</td></tr><tr><td>11:30</td><td class='home'>Leys Park</td></tr></table></div><div class='day'><h2>Mon 06 Jul &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Dalgety Bay</td></tr><tr><td>11:00</td><td class='home'>Pitreavie</td></tr><tr><td>11:30</td><td class='home'>Benarty</td></tr></table></div><div class='day'><h2>Tue 07 Jul &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Beeches</td></tr><tr><td>11:00</td><td class='home'>Links View</td></tr><tr><td>11:30</td><td class='home'>Raith</td></tr></table></div><div class='day'><h2>Wed 08 Jul &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'> </td></tr><tr><td>11:00</td><td class='home'>Bandrum</td></tr><tr><td>11:30</td><td class='home'></td></tr></table></div><div class='day'><h2>Thu 09 Jul &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Beeches</td></tr><tr><td>11:00</td><td class='home'>Matthew Fyfe</td></tr><tr><td>11:30</td><td class='home'>Henderson House</td></tr></table></div><div class='day'><h2>Mon 13 Jul &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Lindsay House</td></tr><tr><td>11:00</td><td class='home'>Canmore</td></tr><tr><td>11:30</td><td class='home'>Jean Mackie</td></tr></table></div><div class='day'><h2>Tue 14 Jul &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Gowrie</td></tr><tr><td>11:00</td><td class='home'>Chapel Level</td></tr><tr><td>11:30</td><td class='home'>Raith</td></tr></table></div><div class='day'><h2>Wed 15 Jul &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Orchardhead</td></tr><tr><td>11:00</td><td class='home'>Bandrum</td></tr><tr><td>11:30</td><td class='home'>Abbeyfield</td></tr></table></div><div class='day'><h2>Thu 16 Jul &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Glendale</td></tr><tr><td>11:00</td><td class='home'>Matthew Fyfe</td></tr><tr><td>11:30</td><td class='home'>Leys Park</td></tr></table></div><div class='day'><h2>Mon 20 Jul &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Dalgety Bay</td></tr><tr><td>11:00</td><td class='home'>Pitreavie</td></tr><tr><td>11:30</td><td class='home'>Benarty</td></tr></table></div><div class='day'><h2>Tue 21 Jul &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Beeches</td></tr><tr><td>11:00</td><td class='home'>Links View</td></tr><tr><td>11:30</td><td class='home'>Raith</td></tr></table></div><div class='day'><h2>Wed 22 Jul &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Harbour Dysart</td></tr><tr><td>11:00</td><td class='home'>Bandrum</td></tr><tr><td>11:30</td><td class='home'></td></tr></table></div><div class='day'><h2>Thu 23 Jul &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Beeches</td></tr><tr><td>11:00</td><td class='home'>Matthew Fyfe</td></tr><tr><td>11:30</td><td class='home'>Henderson House</td></tr></table></div><div class='day'><h2>Mon 27 Jul &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Lindsay House</td></tr><tr><td>11:00</td><td class='home'>Canmore</td></tr><tr><td>11:30</td><td class='home'>Jean Mackie</td></tr></table></div><div class='day'><h2>Tue 28 Jul &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Gowrie</td></tr><tr><td>11:00</td><td class='home'>Chapel Level</td></tr><tr><td>11:30</td><td class='home'>Raith</td></tr></table></div><div class='day'><h2>Wed 29 Jul &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Orchardhead</td></tr><tr><td>11:00</td><td class='home'>Bandrum</td></tr><tr><td>11:30</td><td class='home'>Abbeyfield</td></tr></table></div><div class='day'><h2>Thu 30 Jul &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Glendale</td></tr><tr><td>11:00</td><td class='home'>Matthew Fyfe</td></tr><tr><td>11:30</td><td class='home'>Leys Park</td></tr></table></div><div class='day'><h2>Mon 03 Aug &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Dalgety Bay</td></tr><tr><td>11:00</td><td class='home'>Pitreavie</td></tr><tr><td>11:30</td><td class='home'>Benarty</td></tr></table></div><div class='day'><h2>Tue 04 Aug &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Beeches</td></tr><tr><td>11:00</td><td class='home'>Links View</td></tr><tr><td>11:30</td><td class='home'>Raith</td></tr></table></div><div class='day'><h2>Wed 05 Aug &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Private Hire</td></tr><tr><td>11:00</td><td class='home'>Bandrum</td></tr><tr><td>11:30</td><td class='home'>Private Hire</td></tr></table></div><div class='day'><h2>Thu 06 Aug &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Beeches</td></tr><tr><td>11:00</td><td class='home'>Matthew Fyfe</td></tr><tr><td>11:30</td><td class='home'>Dementia Café</td></tr></table></div><div class='day'><h2>Mon 10 Aug &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Lindsay House</td></tr><tr><td>11:00</td><td class='home'>Canmore</td></tr><tr><td>11:30</td><td class='home'>Jean Mackie</td></tr></table></div><div class='day'><h2>Tue 11 Aug &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Gowrie</td></tr><tr><td>11:00</td><td class='home'>Chapel Level</td></tr><tr><td>11:30</td><td class='home'>Raith</td></tr></table></div><div class='day'><h2>Wed 12 Aug &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Orchardhead</td></tr><tr><td>11:00</td><td class='home'>Bandrum</td></tr><tr><td>11:30</td><td class='home'>Abbeyfield</td></tr></table></div><div class='day'><h2>Thu 13 Aug &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Glendale</td></tr><tr><td>11:00</td><td class='home'>Matthew Fyfe</td></tr><tr><td>11:30</td><td class='home'>Leys Park</td></tr></table></div><div class='day'><h2>Mon 17 Aug &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Dalgety Bay</td></tr><tr><td>11:00</td><td class='home'>Pitreavie</td></tr><tr><td>11:30</td><td class='home'>Benarty</td></tr></table></div><div class='day'><h2>Tue 18 Aug &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Beeches</td></tr><tr><td>11:00</td><td class='home'>Links View</td></tr><tr><td>11:30</td><td class='home'>Raith</td></tr></table></div><div class='day'><h2>Wed 19 Aug &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Harbour Dysart</td></tr><tr><td>11:00</td><td class='home'>Bandrum</td></tr><tr><td>11:30</td><td class='home'>Private Hire</td></tr></table></div><div class='day'><h2>Thu 20 Aug &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Beeches</td></tr><tr><td>11:00</td><td class='home'>Matthew Fyfe</td></tr><tr><td>11:30</td><td class='home'>Dementia Café</td></tr></table></div><div class='day'><h2>Mon 24 Aug &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Lindsay House</td></tr><tr><td>11:00</td><td class='home'>Canmore</td></tr><tr><td>11:30</td><td class='home'>Jean Mackie</td></tr></table></div><div class='day'><h2>Tue 25 Aug &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Gowrie</td></tr><tr><td>11:00</td><td class='home'>Chapel Level</td></tr><tr><td>11:30</td><td class='home'>Raith</td></tr></table></div><div class='day'><h2>Wed 26 Aug &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Orchardhead</td></tr><tr><td>11:00</td><td class='home'>Bandrum</td></tr><tr><td>11:30</td><td class='home'>Abbeyfield</td></tr></table></div><div class='day'><h2>Thu 27 Aug &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Glendale</td></tr><tr><td>11:00</td><td class='home'>Matthew Fyfe</td></tr><tr><td>11:30</td><td class='home'>Leys Park</td></tr></table></div><div class='day'><h2>Mon 31 Aug &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Dalgety Bay</td></tr><tr><td>11:00</td><td class='home'>Pitreavie</td></tr><tr><td>11:30</td><td class='home'>Benarty</td></tr></table></div><div class='day'><h2>Tue 01 Sep &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Beeches</td></tr><tr><td>11:00</td><td class='home'>Links View</td></tr><tr><td>11:30</td><td class='home'>Raith</td></tr></table></div><div class='day'><h2>Wed 02 Sep &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Private Hire</td></tr><tr><td>11:00</td><td class='home'>Bandrum</td></tr><tr><td>11:30</td><td class='home'>Private Hire</td></tr></table></div><div class='day'><h2>Thu 03 Sep &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Beeches</td></tr><tr><td>11:00</td><td class='home'>Matthew Fyfe</td></tr><tr><td>11:30</td><td class='home'>Dementia Café</td></tr></table></div><div class='day'><h2>Mon 07 Sep &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Lindsay House</td></tr><tr><td>11:00</td><td class='home'>Canmore</td></tr><tr><td>11:30</td><td class='home'>Jean Mackie</td></tr></table></div><div class='day'><h2>Tue 08 Sep &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Gowrie</td></tr><tr><td>11:00</td><td class='home'>Chapel Level</td></tr><tr><td>11:30</td><td class='home'>Raith</td></tr></table></div><div class='day'><h2>Wed 09 Sep &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Orchardhead</td></tr><tr><td>11:00</td><td class='home'>Bandrum</td></tr><tr><td>11:30</td><td class='home'>Abbeyfield</td></tr></table></div><div class='day'><h2>Thu 10 Sep &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Glendale</td></tr><tr><td>11:00</td><td class='home'>Matthew Fyfe</td></tr><tr><td>11:30</td><td class='home'>Leys Park</td></tr></table></div><div class='day'><h2>Mon 14 Sep &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Dalgety Bay</td></tr><tr><td>11:00</td><td class='home'>Pitreavie</td></tr><tr><td>11:30</td><td class='home'>Benarty</td></tr></table></div><div class='day'><h2>Tue 15 Sep &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Beeches</td></tr><tr><td>11:00</td><td class='home'>Links View</td></tr><tr><td>11:30</td><td class='home'>Raith</td></tr></table></div><div class='day'><h2>Wed 16 Sep &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Harbour Dysart</td></tr><tr><td>11:00</td><td class='home'>Bandrum</td></tr><tr><td>11:30</td><td class='home'>Private Hire </td></tr></table></div><div class='day'><h2>Thu 17 Sep &nbsp; <small>Week 2</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Beeches</td></tr><tr><td>11:00</td><td class='home'>Matthew Fyfe</td></tr><tr><td>11:30</td><td class='home'>Dementia Café</td></tr></table></div><div class='day'><h2>Mon 21 Sep &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Lindsay House</td></tr><tr><td>11:00</td><td class='home'>Canmore</td></tr><tr><td>11:30</td><td class='home'>Jean Mackie</td></tr></table></div><div class='day'><h2>Tue 22 Sep &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Gowrie</td></tr><tr><td>11:00</td><td class='home'>Chapel Level</td></tr><tr><td>11:30</td><td class='home'>Raith</td></tr></table></div><div class='day'><h2>Wed 23 Sep &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Orchardhead</td></tr><tr><td>11:00</td><td class='home'>Bandrum</td></tr><tr><td>11:30</td><td class='home'>Abbeyfield</td></tr></table></div><div class='day'><h2>Thu 24 Sep &nbsp; <small>Week 1</small></h2><table><tr><th>Time</th><th>Care Home</th></tr><tr><td>10:30</td><td class='home'>Glendale</td></tr><tr><td>11:00</td><td class='home'>Matthew Fyfe</td></tr><tr><td>11:30</td><td class='home'>Leys Park</td></tr></table></div></main></body></html>
