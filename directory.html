@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CWAS Pilot Portal - Care Home Directory</title>
+
+<style>
+body{font-family:Arial,sans-serif;background:#f4f6f7;margin:0}
+header{background:#0b6b3a;color:#fff;padding:20px;text-align:center}
+header a{color:#fff}
+main{max-width:1000px;margin:auto;padding:20px}
+#search{
+ width:100%;
+ padding:12px;
+ font-size:16px;
+ margin-bottom:20px;
+ border-radius:8px;
+ border:1px solid #ccc;
+}
+.card{
+ background:#fff;
+ border-radius:10px;
+ padding:15px;
+ margin-bottom:15px;
+ box-shadow:0 2px 6px rgba(0,0,0,.15);
+}
+.card h2{margin:0;color:#0b6b3a}
+.actions a{
+ display:inline-block;
+ margin-right:10px;
+ margin-top:10px;
+ background:#0b6b3a;
+ color:#fff;
+ text-decoration:none;
+ padding:8px 12px;
+ border-radius:6px;
+}
+</style>
+
+<script>
+function searchHomes(){
+ let f=document.getElementById("search").value.toLowerCase();
+ document.querySelectorAll(".card").forEach(c=>{
+   c.style.display=c.innerText.toLowerCase().includes(f)?"block":"none";
+ });
+}
+</script>
+
+</head>
+<body>
+
+<header>
+<h1>📇 Care Home Directory</h1>
+<p><a href="index.html">⬅ Home</a></p>
+</header>
+
+<main>
+
+<input id="search" onkeyup="searchHomes()" placeholder="Search care homes...">
+
+<div class="card">
+<h2>Abbeyfield</h2>
+<p>55 Meldrum Road, Kirkcaldy, KY2 5HY</p>
+<p>☎ 01592 205491</p>
+<div class="actions">
+<a href="tel:01592205491">Call</a>
+<a target="_blank" href="https://maps.google.com/?q=55+Meldrum+Road+Kirkcaldy+KY2+5HY">Map</a>
+</div>
+</div>
+
+<div class="card">
+<h2>Alexander Hse</h2>
+<p>Main Street, Crossgates, KY4 8DF</p>
+<p>☎ 01383 518080</p>
+<div class="actions">
+<a href="tel:01383518080">Call</a>
+<a target="_blank" href="https://maps.google.com/?q=Main+Street+Crossgates+KY4+8DF">Map</a>
+</div>
+</div>
+
+<div class="card">
+<h2>Bandrum</h2>
+<p>Saline, Dunfermline, KY12 9HR</p>
+<p>☎ 01383 851030</p>
+<div class="actions">
+<a href="tel:01383851030">Call</a>
+<a target="_blank" href="https://maps.google.com/?q=Saline+Dunfermline+KY12+9HR">Map</a>
+</div>
+</div>
+
+<!-- Continue with the remaining care homes -->
+
+</main>
+</body>
+</html>
