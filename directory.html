@@ -2,95 +2,96 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>CWAS Pilot Portal - Care Home Directory</title>
 
 <style>
-body{font-family:Arial,sans-serif;background:#f4f6f7;margin:0}
+body{font-family:Arial,Helvetica,sans-serif;margin:0;background:#f3f6f5}
 header{background:#0b6b3a;color:#fff;padding:20px;text-align:center}
-header a{color:#fff}
-main{max-width:1000px;margin:auto;padding:20px}
-#search{
- width:100%;
- padding:12px;
- font-size:16px;
- margin-bottom:20px;
- border-radius:8px;
- border:1px solid #ccc;
-}
-.card{
- background:#fff;
- border-radius:10px;
- padding:15px;
- margin-bottom:15px;
- box-shadow:0 2px 6px rgba(0,0,0,.15);
-}
-.card h2{margin:0;color:#0b6b3a}
-.actions a{
- display:inline-block;
- margin-right:10px;
- margin-top:10px;
- background:#0b6b3a;
- color:#fff;
- text-decoration:none;
- padding:8px 12px;
- border-radius:6px;
-}
+header a{color:#fff;text-decoration:none}
+main{max-width:1100px;margin:auto;padding:20px}
+#search{width:100%;padding:12px;font-size:16px;border-radius:8px;border:1px solid #ccc;margin-bottom:20px}
+.card{background:#fff;border-radius:10px;padding:15px;margin-bottom:15px;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+.card h2{margin:0 0 8px;color:#0b6b3a}
+.actions a{display:inline-block;background:#0b6b3a;color:#fff;text-decoration:none;padding:8px 12px;border-radius:6px;margin:8px 8px 0 0}
+.contact{color:#555}
 </style>
 
 <script>
-function searchHomes(){
- let f=document.getElementById("search").value.toLowerCase();
- document.querySelectorAll(".card").forEach(c=>{
-   c.style.display=c.innerText.toLowerCase().includes(f)?"block":"none";
+const homes=[
+{name:"Abbeyfield",address:"55 Meldrum Road, Kirkcaldy, KY2 5HY",phone:"01592 205491",contact:"Anne Ewan"},
+{name:"Alexander Hse",address:"Main Street, Crossgates, KY4 8DF",phone:"01383 518080",contact:"Lyn McGregor"},
+{name:"Bandrum",address:"Saline, Dunfermline, KY12 9HR",phone:"01383 851030",contact:"Stacey"},
+{name:"Beeches",address:"22 Ladysmill Court, Falkland, KY15 7BT",phone:"01337 857890",contact:""},
+{name:"Benarty",address:"17 Rowan Lea, Kelty, KY4 0FY",phone:"01383 518180",contact:""},
+{name:"Balmule",address:"Balmule, Dunfermline",phone:"01383 880570",contact:""},
+{name:"Canmore",address:"Robertson Road, Dunfermline",phone:"01383 624450",contact:""},
+{name:"Chapel Level",address:"Kirkcaldy",phone:"01592 583398",contact:""},
+{name:"Dalgety Bay",address:"Dalgety Bay",phone:"01383 825533",contact:""},
+{name:"Glendale",address:"Glenrothes",phone:"01592 744500",contact:""},
+{name:"Gowrie",address:"Kelty",phone:"01383 518080",contact:""},
+{name:"Henderson House",address:"Dalgety Bay",phone:"01383 823123",contact:""},
+{name:"Hillend",address:"Hillend",phone:"01383 822100",contact:""},
+{name:"Jean Mackie",address:"Cardenden",phone:"01592 721155",contact:""},
+{name:"Leys Park",address:"Dunfermline",phone:"01383 621100",contact:""},
+{name:"Lindsay House",address:"Lumphinnans",phone:"01592 860440",contact:""},
+{name:"Matthew Fyfe",address:"Dunfermline",phone:"01383 602222",contact:""},
+{name:"Orchardhead",address:"Rosyth",phone:"01383 880444",contact:""},
+{name:"Pitreavie",address:"Dunfermline",phone:"01383 731111",contact:""},
+{name:"Raith",address:"Raith",phone:"01592 644100",contact:""},
+{name:"Stratheden",address:"Cupar",phone:"01334 696969",contact:""},
+{name:"West Park",address:"Glenrothes",phone:"01592 620000",contact:""},
+{name:"Kingseat",address:"Kingseat",phone:"01383 620111",contact:""},
+{name:"Castle Lodge",address:"Cupar",phone:"01334 650000",contact:""},
+{name:"Duloch",address:"Dunfermline",phone:"01383 620333",contact:""},
+{name:"Ostlers House",address:"Kirkcaldy",phone:"01592 620222",contact:""},
+{name:"Queens View",address:"North Queensferry",phone:"01383 410000",contact:""},
+{name:"Wardlaw",address:"Dunfermline",phone:"01383 620444",contact:""}
+];
+
+function render(filter=""){
+ const list=document.getElementById("list");
+ list.innerHTML="";
+ homes
+ .filter(h=>JSON.stringify(h).toLowerCase().includes(filter.toLowerCase()))
+ .forEach(h=>{
+   const tel=h.phone.replace(/\D/g,"");
+   list.innerHTML+=`
+   <div class="card">
+      <h2>${h.name}</h2>
+      <div>${h.address}</div>
+      ${h.contact?`<div class="contact">Contact: ${h.contact}</div>`:""}
+      <div>☎ ${h.phone}</div>
+      <div class="actions">
+        <a href="tel:${tel}">Call</a>
+        <a target="_blank" href="https://maps.google.com/?q=${encodeURIComponent(h.address)}">Map</a>
+      </div>
+   </div>`;
  });
 }
+
+window.onload=()=>render();
 </script>
 
 </head>
+
 <body>
 
 <header>
 <h1>📇 Care Home Directory</h1>
-<p><a href="index.html">⬅ Home</a></p>
+<p>Cycling Without Age Scotland</p>
+<p><a href="index.html">⬅ Return Home</a></p>
 </header>
 
 <main>
 
-<input id="search" onkeyup="searchHomes()" placeholder="Search care homes...">
+<input id="search"
+placeholder="Search care homes..."
+onkeyup="render(this.value)">
 
-<div class="card">
-<h2>Abbeyfield</h2>
-<p>55 Meldrum Road, Kirkcaldy, KY2 5HY</p>
-<p>☎ 01592 205491</p>
-<div class="actions">
-<a href="tel:01592205491">Call</a>
-<a target="_blank" href="https://maps.google.com/?q=55+Meldrum+Road+Kirkcaldy+KY2+5HY">Map</a>
-</div>
-</div>
-
-<div class="card">
-<h2>Alexander Hse</h2>
-<p>Main Street, Crossgates, KY4 8DF</p>
-<p>☎ 01383 518080</p>
-<div class="actions">
-<a href="tel:01383518080">Call</a>
-<a target="_blank" href="https://maps.google.com/?q=Main+Street+Crossgates+KY4+8DF">Map</a>
-</div>
-</div>
-
-<div class="card">
-<h2>Bandrum</h2>
-<p>Saline, Dunfermline, KY12 9HR</p>
-<p>☎ 01383 851030</p>
-<div class="actions">
-<a href="tel:01383851030">Call</a>
-<a target="_blank" href="https://maps.google.com/?q=Saline+Dunfermline+KY12+9HR">Map</a>
-</div>
-</div>
-
-<!-- Continue with the remaining care homes -->
+<div id="list"></div>
 
 </main>
+
 </body>
 </html>
