@@ -1,98 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>CWAS Pilot Portal - Care Home Directory</title>
-
 <style>
-body{font-family:Arial,Helvetica,sans-serif;margin:0;background:#f3f6f5}
+body{font-family:Arial,sans-serif;background:#f4f6f7;margin:0}
 header{background:#0b6b3a;color:#fff;padding:20px;text-align:center}
-header a{color:#fff;text-decoration:none}
-main{max-width:1100px;margin:auto;padding:20px}
-#search{width:100%;padding:12px;font-size:16px;border-radius:8px;border:1px solid #ccc;margin-bottom:20px}
-.card{background:#fff;border-radius:10px;padding:15px;margin-bottom:15px;box-shadow:0 2px 6px rgba(0,0,0,.15)}
-.card h2{margin:0 0 8px;color:#0b6b3a}
-.actions a{display:inline-block;background:#0b6b3a;color:#fff;text-decoration:none;padding:8px 12px;border-radius:6px;margin:8px 8px 0 0}
-.contact{color:#555}
+header a{color:#fff}
+main{max-width:1000px;margin:auto;padding:20px}
+#search{width:100%;padding:12px;font-size:16px;border-radius:8px;border:1px solid #bbb}
+.card{background:#fff;border-radius:10px;padding:15px;margin:15px 0;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+.card h2{margin:0;color:#0b6b3a}
+.actions a{display:inline-block;margin:8px 8px 0 0;padding:8px 12px;background:#0b6b3a;color:#fff;text-decoration:none;border-radius:6px}
+.label{font-weight:bold}
 </style>
-
 <script>
-const homes=[
-{name:"Abbeyfield",address:"55 Meldrum Road, Kirkcaldy, KY2 5HY",phone:"01592 205491",contact:"Anne Ewan"},
-{name:"Alexander Hse",address:"Main Street, Crossgates, KY4 8DF",phone:"01383 518080",contact:"Lyn McGregor"},
-{name:"Bandrum",address:"Saline, Dunfermline, KY12 9HR",phone:"01383 851030",contact:"Stacey"},
-{name:"Beeches",address:"22 Ladysmill Court, Falkland, KY15 7BT",phone:"01337 857890",contact:""},
-{name:"Benarty",address:"17 Rowan Lea, Kelty, KY4 0FY",phone:"01383 518180",contact:""},
-{name:"Balmule",address:"Balmule, Dunfermline",phone:"01383 880570",contact:""},
-{name:"Canmore",address:"Robertson Road, Dunfermline",phone:"01383 624450",contact:""},
-{name:"Chapel Level",address:"Kirkcaldy",phone:"01592 583398",contact:""},
-{name:"Dalgety Bay",address:"Dalgety Bay",phone:"01383 825533",contact:""},
-{name:"Glendale",address:"Glenrothes",phone:"01592 744500",contact:""},
-{name:"Gowrie",address:"Kelty",phone:"01383 518080",contact:""},
-{name:"Henderson House",address:"Dalgety Bay",phone:"01383 823123",contact:""},
-{name:"Hillend",address:"Hillend",phone:"01383 822100",contact:""},
-{name:"Jean Mackie",address:"Cardenden",phone:"01592 721155",contact:""},
-{name:"Leys Park",address:"Dunfermline",phone:"01383 621100",contact:""},
-{name:"Lindsay House",address:"Lumphinnans",phone:"01592 860440",contact:""},
-{name:"Matthew Fyfe",address:"Dunfermline",phone:"01383 602222",contact:""},
-{name:"Orchardhead",address:"Rosyth",phone:"01383 880444",contact:""},
-{name:"Pitreavie",address:"Dunfermline",phone:"01383 731111",contact:""},
-{name:"Raith",address:"Raith",phone:"01592 644100",contact:""},
-{name:"Stratheden",address:"Cupar",phone:"01334 696969",contact:""},
-{name:"West Park",address:"Glenrothes",phone:"01592 620000",contact:""},
-{name:"Kingseat",address:"Kingseat",phone:"01383 620111",contact:""},
-{name:"Castle Lodge",address:"Cupar",phone:"01334 650000",contact:""},
-{name:"Duloch",address:"Dunfermline",phone:"01383 620333",contact:""},
-{name:"Ostlers House",address:"Kirkcaldy",phone:"01592 620222",contact:""},
-{name:"Queens View",address:"North Queensferry",phone:"01383 410000",contact:""},
-{name:"Wardlaw",address:"Dunfermline",phone:"01383 620444",contact:""}
-];
-
- 
-function render(filter=""){
- const list=document.getElementById("list");
- list.innerHTML="";
- homes
- .filter(h=>JSON.stringify(h).toLowerCase().includes(filter.toLowerCase()))
- .forEach(h=>{
-   const tel=h.phone.replace(/\D/g,"");
-   list.innerHTML+=`
-   <div class="card">
-      <h2>${h.name}</h2>
-      <div>${h.address}</div>
-      ${h.contact?`<div class="contact">Contact: ${h.contact}</div>`:""}
-      <div>☎ ${h.phone}</div>
-      <div class="actions">
-        <a href="tel:${tel}">Call</a>
-        <a target="_blank" href="https://maps.google.com/?q=${encodeURIComponent(h.address)}">Map</a>
-      </div>
-   </div>`;
- });
+function filterHomes(){
+const f=document.getElementById('search').value.toLowerCase();
+document.querySelectorAll('.card').forEach(c=>{
+c.style.display=c.innerText.toLowerCase().includes(f)?'block':'none';
+});
 }
-
-window.onload=()=>render();
-</script>
-
-</head>
-
-<body>
-
-<header>
-<h1>📇 Care Home Directory</h1>
-<p>Cycling Without Age Scotland</p>
-<p><a href="index.html">⬅ Return Home</a></p>
-</header>
-
+</script></head><body>
+<header><h1>Care Home Directory</h1><p>Cycling Without Age Scotland</p><p><a href="index.html">⬅ Home</a></p></header>
 <main>
-
-<input id="search"
-placeholder="Search care homes..."
-onkeyup="render(this.value)">
-
-<div id="list"></div>
-
-</main>
-
-</body>
-</html>
+<input id="search" placeholder="Search care homes..." onkeyup="filterHomes()">
+<div class="card"><h2>Abbeyfield</h2><p>Kirkcaldy</p><p><span class='label'>Contact:</span> Anne Ewan</p><p><span class='label'>Office:</span> 01592 205491</p><p><span class='label'>Mobile:</span> 07913 563498</p><p><span class='label'>WhatsApp:</span> yes</p><div class='actions'><a href="tel:01592205491">Call Office</a><a href="tel:07913563498">Call Mobile</a><a target="_blank" href="https://maps.google.com/?q=Kirkcaldy">Directions</a></div></div><div class="card"><h2>Alexander Hse</h2><p>Crossgates</p><p><span class='label'>Contact:</span> Lyn McGregor</p><p><span class='label'>Office:</span> 01383 518080</p><p><span class='label'>Mobile:</span> 07741 526627</p><div class='actions'><a href="tel:01383518080">Call Office</a><a href="tel:07741526627">Call Mobile</a><a target="_blank" href="https://maps.google.com/?q=Crossgates">Directions</a></div></div><div class="card"><h2>Bandrum</h2><p>Dunfermline</p><p><span class='label'>Contact:</span> Stacey</p><p><span class='label'>Office:</span> 01383 851030</p><p><span class='label'>Mobile:</span> 07883 935212</p><p><span class='label'>Alternate:</span> 07467 946892</p><p><span class='label'>WhatsApp:</span> yes</p><div class='actions'><a href="tel:01383851030">Call Office</a><a href="tel:07883935212">Call Mobile</a><a target="_blank" href="https://maps.google.com/?q=Dunfermline">Directions</a></div></div><div class="card"><h2>Beeches</h2><p>Dunfermline</p><p><span class='label'>Contact:</span> Leigh</p><p><span class='label'>Office:</span> 01383 737377</p><p><span class='label'>Mobile:</span> 07793 048704</p><p><span class='label'>WhatsApp:</span> yes</p><div class='actions'><a href="tel:01383737377">Call Office</a><a href="tel:07793048704">Call Mobile</a><a target="_blank" href="https://maps.google.com/?q=Dunfermline">Directions</a></div></div><div class="card"><h2>Benarty</h2><p>Kelty</p><p><span class='label'>Contact:</span> Kerry</p><p><span class='label'>Office:</span> 01383 839000</p><p><span class='label'>Mobile:</span> 07908 432517</p><p><span class='label'>WhatsApp:</span> Messenger</p><div class='actions'><a href="tel:01383839000">Call Office</a><a href="tel:07908432517">Call Mobile</a><a target="_blank" href="https://maps.google.com/?q=Kelty">Directions</a></div></div><div class="card"><h2>Benore</h2><p>Lochore</p><p><span class='label'>Contact:</span> Ross</p><p><span class='label'>Office:</span> 01592 862130</p><div class='actions'><a href="tel:01592862130">Call Office</a><a target="_blank" href="https://maps.google.com/?q=Lochore">Directions</a></div></div><div class="card"><h2>Canmore</h2><p>Dunfermline</p><p><span class='label'>Contact:</span> Elizabeth Kerr</p><p><span class='label'>Office:</span> 01383 440506</p><p><span class='label'>Mobile:</span> 07584 741883</p><p><span class='label'>Alternate:</span> 07860 749504</p><p><span class='label'>WhatsApp:</span> yes</p><div class='actions'><a href="tel:01383440506">Call Office</a><a href="tel:07584741883">Call Mobile</a><a target="_blank" href="https://maps.google.com/?q=Dunfermline">Directions</a></div></div><div class="card"><h2>Chapel Level</h2><p>Kirkcaldy</p><p><span class='label'>Contact:</span> Phoebe Mead</p><p><span class='label'>Office:</span> 01592 644443</p><p><span class='label'>Mobile:</span> 07737 921515</p><p><span class='label'>WhatsApp:</span> yes</p><div class='actions'><a href="tel:01592644443">Call Office</a><a href="tel:07737921515">Call Mobile</a><a target="_blank" href="https://maps.google.com/?q=Kirkcaldy">Directions</a></div></div><div class="card"><h2>Craigie House</h2><p>Crossgates</p><p><span class='label'>Contact:</span> Jasmine</p><p><span class='label'>Office:</span> 01383 510505</p><p><span class='label'>Mobile:</span> 07741 937641</p><p><span class='label'>WhatsApp:</span> yes</p><div class='actions'><a href="tel:01383510505">Call Office</a><a href="tel:07741937641">Call Mobile</a><a target="_blank" href="https://maps.google.com/?q=Crossgates">Directions</a></div></div><div class="card"><h2>Dalgety Bay</h2><p>Dalgety Bay</p><p><span class='label'>Contact:</span> David Thomson</p><p><span class='label'>Office:</span> 01383 339500</p><p><span class='label'>Mobile:</span> 07850 767660</p><p><span class='label'>Alternate:</span> 07494 472470</p><p><span class='label'>WhatsApp:</span> yes</p><div class='actions'><a href="tel:01383339500">Call Office</a><a href="tel:07850767660">Call Mobile</a><a target="_blank" href="https://maps.google.com/?q=Dalgety%20Bay">Directions</a></div></div><div class="card"><h2>Dementia Café</h2><p>Dunfermline</p><p><span class='label'>Contact:</span> Shirley macdonald</p><p><span class='label'>Mobile:</span> 07742952349</p><p><span class='label'>WhatsApp:</span> yes</p><div class='actions'><a href="tel:07742952349">Call Mobile</a><a target="_blank" href="https://maps.google.com/?q=Dunfermline">Directions</a></div></div><div class="card"><h2>Glendale Lodge</h2><p>Townhill</p><p><span class='label'>Contact:</span> Claire Lunn</p><p><span class='label'>Office:</span> 01383 728166</p><p><span class='label'>Mobile:</span> 07599 601136</p><p><span class='label'>Alternate:</span> 07701 006972</p><p><span class='label'>WhatsApp:</span> yes</p><div class='actions'><a href="tel:01383728166">Call Office</a><a href="tel:07599601136">Call Mobile</a><a target="_blank" href="https://maps.google.com/?q=Townhill">Directions</a></div></div><div class="card"><h2>Gowrie House</h2><p>Kirkcaldy</p><p><span class='label'>Contact:</span> Amy-Lou Rodgers</p><p><span class='label'>Office:</span> 01592 597066</p><p><span class='label'>Mobile:</span> 07375 659198</p><p><span class='label'>WhatsApp:</span> yes</p><div class='actions'><a href="tel:01592597066">Call Office</a><a href="tel:07375659198">Call Mobile</a><a target="_blank" href="https://maps.google.com/?q=Kirkcaldy">Directions</a></div></div><div class="card"><h2>Harbour</h2><p>Dysart</p><p><span class='label'>Contact:</span> Tracy Logie</p><p><span class='label'>Office:</span> 01592 650800</p><p><span class='label'>Mobile:</span> 07584 055439</p><p><span class='label'>WhatsApp:</span> yes</p><div class='actions'><a href="tel:01592650800">Call Office</a><a href="tel:07584055439">Call Mobile</a><a target="_blank" href="https://maps.google.com/?q=Dysart">Directions</a></div></div><div class="card"><h2>Headwell</h2><p>Dunfermline</p><p><span class='label'>Contact:</span> Daisy Saunders</p><p><span class='label'>Office:</span> 01383 733163</p><p><span class='label'>Mobile:</span> 07359 503297</p><p><span class='label'>Alternate:</span> 07512 662939</p><p><span class='label'>WhatsApp:</span> yes</p><div class='actions'><a href="tel:01383733163">Call Office</a><a href="tel:07359503297">Call Mobile</a><a target="_blank" href="https://maps.google.com/?q=Dunfermline">Directions</a></div></div><div class="card"><h2>Henderson Hse</h2><p>Dalgety Bay</p><p><span class='label'>Contact:</span> Katie Nicolson</p><p><span class='label'>Office:</span> 01383 821234</p><p><span class='label'>Mobile:</span> 07989 393453</p><p><span class='label'>WhatsApp:</span> yes</p><div class='actions'><a href="tel:01383821234">Call Office</a><a href="tel:07989393453">Call Mobile</a><a target="_blank" href="https://maps.google.com/?q=Dalgety%20Bay">Directions</a></div></div><div class="card"><h2>Hilton Court</h2><p>Rosyth</p><p><span class='label'>Contact:</span> Jeanette Miller</p><p><span class='label'>Office:</span> 01383 411250</p><p><span class='label'>Mobile:</span> 07944 465244</p><p><span class='label'>WhatsApp:</span> yes</p><div class='actions'><a href="tel:01383411250">Call Office</a><a href="tel:07944465244">Call Mobile</a><a target="_blank" href="https://maps.google.com/?q=Rosyth">Directions</a></div></div><div class="card"><h2>Jean Mackie</h2><p>Dunfermline</p><p><span class='label'>Contact:</span> Vivien</p><p><span class='label'>Office:</span> 01383 602357</p><p><span class='label'>Mobile:</span> 07811 780986</p><p><span class='label'>Alternate:</span> 07970 507963</p><p><span class='label'>WhatsApp:</span> yes</p><div class='actions'><a href="tel:01383602357">Call Office</a><a href="tel:07811780986">Call Mobile</a><a target="_blank" href="https://maps.google.com/?q=Dunfermline">Directions</a></div></div><div class="card"><h2>Leys Park</h2><p>Dunfermline</p><p><span class='label'>Contact:</span> Leona Keay</p><p><span class='label'>Office:</span> 01383 723790</p><p><span class='label'>Mobile:</span> 07921 564026</p><p><span class='label'>Alternate:</span> 07936 644959</p><p><span class='label'>WhatsApp:</span> yes</p><div class='actions'><a href="tel:01383723790">Call Office</a><a href="tel:07921564026">Call Mobile</a><a target="_blank" href="https://maps.google.com/?q=Dunfermline">Directions</a></div></div><div class="card"><h2>Lindsay House</h2><p>Lumphinnans</p><p><span class='label'>Contact:</span> Laura Wilson</p><p><span class='label'>Office:</span> 01592 583581</p><p><span class='label'>Mobile:</span> 07876 637302</p><p><span class='label'>WhatsApp:</span> yes</p><div class='actions'><a href="tel:01592583581">Call Office</a><a href="tel:07876637302">Call Mobile</a><a target="_blank" href="https://maps.google.com/?q=Lumphinnans">Directions</a></div></div><div class="card"><h2>Links View</h2><p>Burntisland</p><p><span class='label'>Contact:</span> Nick</p><p><span class='label'>Office:</span> 01592 873736</p><p><span class='label'>Mobile:</span> 07510918552</p><p><span class='label'>WhatsApp:</span> yes</p><div class='actions'><a href="tel:01592873736">Call Office</a><a href="tel:07510918552">Call Mobile</a><a target="_blank" href="https://maps.google.com/?q=Burntisland">Directions</a></div></div><div class="card"><h2>Matthew Fyfe</h2><p>Dunfermline</p><p><span class='label'>Contact:</span> Lorne</p><p><span class='label'>Office:</span> 01383 602333</p><p><span class='label'>Mobile:</span> 07787 324574</p><p><span class='label'>Alternate:</span> 07752 815453 :      077530246339</p><p><span class='label'>WhatsApp:</span> yes</p><div class='actions'><a href="tel:01383602333">Call Office</a><a href="tel:07787324574">Call Mobile</a><a target="_blank" href="https://maps.google.com/?q=Dunfermline">Directions</a></div></div><div class="card"><h2>Orchardhead</h2><p>Rosyth</p><p><span class='label'>Contact:</span> Jan McDermid</p><p><span class='label'>Office:</span> 01383 420111</p><p><span class='label'>Mobile:</span> 07771 394706</p><p><span class='label'>Alternate:</span> 07969 540253</p><p><span class='label'>WhatsApp:</span> No</p><div class='actions'><a href="tel:01383420111">Call Office</a><a href="tel:07771394706">Call Mobile</a><a target="_blank" href="https://maps.google.com/?q=Rosyth">Directions</a></div></div><div class="card"><h2>Pitreavie Castle</h2><p>Dunfermline</p><p><span class='label'>Contact:</span> Kerstin and Kara</p><p><span class='label'>Office:</span> 01383 799024</p><p><span class='label'>Mobile:</span> 07483 633416</p><p><span class='label'>WhatsApp:</span> yes</p><div class='actions'><a href="tel:01383799024">Call Office</a><a href="tel:07483633416">Call Mobile</a><a target="_blank" href="https://maps.google.com/?q=Dunfermline">Directions</a></div></div><div class="card"><h2>Raith Manor</h2><p>Kirkcaldy</p><p><span class='label'>Contact:</span> Kirsty Carr</p><p><span class='label'>Office:</span> 01592 642008</p><p><span class='label'>Mobile:</span> 07547 180809</p><p><span class='label'>WhatsApp:</span> yes</p><div class='actions'><a href="tel:01592642008">Call Office</a><a href="tel:07547180809">Call Mobile</a><a target="_blank" href="https://maps.google.com/?q=Kirkcaldy">Directions</a></div></div><div class="card"><h2></h2><div class='actions'></div></div><div class="card"><h2></h2><div class='actions'></div></div><div class="card"><h2></h2><div class='actions'></div></div></main></body></html>
